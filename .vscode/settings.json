@@ -1,0 +1,11 @@
+{
+	"idf.openOcdConfigs": [
+		"interface/ftdi/esp32_devkitj_v1.cfg",
+		"target/esp32s2.cfg"
+	],
+	"idf.portWin": "COM3",
+	"idf.flashType": "UART",
+	"files.associations": {
+		"msc.h": "c"
+	}
+}

@@ -1,0 +1,6 @@
+[mapping:main]
+archive: libmain.a
+entries:
+    esp_usb_jtag (noflash)
+    eub_vendord (noflash)
+    eub_swd (noflash)
