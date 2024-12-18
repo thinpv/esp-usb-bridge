@@ -23,6 +23,7 @@
 #define GPIO_SWCLK      CONFIG_BRIDGE_GPIO_TCK
 #define GPIO_SWDIO      CONFIG_BRIDGE_GPIO_TMS
 
+#if CONFIG_IDF_TARGET_ESP32S2
 /* serial */
 #define GPIO_BOOT_0       2
 #define GPIO_RST_0        3
@@ -37,6 +38,24 @@
 
 /* leds */
 #define LED_TX          15
+
+#elif CONFIG_IDF_TARGET_ESP32S3
+/* serial */
+#define GPIO_BOOT_0       4
+#define GPIO_RST_0        7
+#define GPIO_RXD_0        6
+#define GPIO_TXD_0        5
+
+/* serial */
+#define GPIO_BOOT_1       8
+#define GPIO_RST_1        9
+#define GPIO_RXD_1        10
+#define GPIO_TXD_1        11
+
+/* leds */
+#define LED_TX          48
+#endif
+
 #define LED_RX          CONFIG_BRIDGE_GPIO_LED2
 #define LED_JTAG        CONFIG_BRIDGE_GPIO_LED3
 
