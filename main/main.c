@@ -62,26 +62,25 @@ enum
 #define EPNUM_CDC_1_IN 0x84
 
 static const tusb_desc_device_t descriptor_config = {
-		.bLength = sizeof(tusb_desc_device_t),
-		.bDescriptorType = TUSB_DESC_DEVICE,
-		.bcdUSB = USB_BCD,
-
-		// Use Interface Association Descriptor (IAD) for CDC
-		// As required by USB Specs IAD's subclass must be common class (2) and protocol must be IAD (1)
-		.bDeviceClass = TUSB_CLASS_MISC,
-		.bDeviceSubClass = MISC_SUBCLASS_COMMON,
-		.bDeviceProtocol = MISC_PROTOCOL_IAD,
-		.bMaxPacketSize0 = CFG_TUD_ENDPOINT0_SIZE,
-
-		.idVendor = USB_VID,
-		.idProduct = USB_PID,
-		.bcdDevice = 0x0100,
-
-		.iManufacturer = 0x01,
-		.iProduct = 0x02,
-		.iSerialNumber = 0x03,
-
-		.bNumConfigurations = 0x01};
+    .bLength = sizeof(descriptor_config),
+    .bDescriptorType = TUSB_DESC_DEVICE,
+    .bcdUSB = 0x0200,
+    .bDeviceClass = TUSB_CLASS_MISC,
+    .bDeviceSubClass = MISC_SUBCLASS_COMMON,
+    .bDeviceProtocol = MISC_PROTOCOL_IAD,
+#ifdef CFG_TUD_ENDPOINT0_SIZE
+    .bMaxPacketSize0 = CFG_TUD_ENDPOINT0_SIZE,
+#else  // earlier versions have a typo in the name
+    .bMaxPacketSize0 = CFG_TUD_ENDOINT0_SIZE,
+#endif
+    .idVendor = CONFIG_BRIDGE_USB_VID,
+    .idProduct = CONFIG_BRIDGE_USB_PID,
+    .bcdDevice = BCDDEVICE,     // defined in CMakeLists.txt
+    .iManufacturer = 0x01,
+    .iProduct = 0x02,
+    .iSerialNumber = 0x03,
+    .bNumConfigurations = 0x01
+};
 
 static uint8_t const desc_configuration[] = {
 		// config number, interface count, string index, total length, attribute, power in mA
